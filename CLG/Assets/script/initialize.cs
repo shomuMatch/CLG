@@ -10,7 +10,7 @@ public class initialize : MonoBehaviour {
 	public GameObject floor,floor_red,floor_blue,wall,crystalBlue,crystalRed,crystalBlack;
 
 	
-	void Start(){
+	void start(){
 		Debug.Log("START");
 		set_panel(3,3,new int[,] {{1,2,1},{3,1,0},{1,0,4}});
 		Debug.Log("END");
@@ -25,44 +25,51 @@ public class initialize : MonoBehaviour {
 			for(int x=0;x<W;x++){
 				float xc=(x-Mathf.FloorToInt(W/2.0f))*32.0f+16.0f*((W+1)%2.0f);
 				float yc=-(y-Mathf.FloorToInt(H/2.0f))*32.0f+16.0f*((H+1)%2.0f);
-				if(field[y,x]==0){
+				if(field[y,x]==0){			//FLOOR
 					GameObject floorI=Instantiate(floor,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(baseObject.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
-					floorI.transform.name = "jijijij";
-				}else if(field[y,x]==1){
+					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"Floor";
+				}else if(field[y,x]==1){	//WALL
 					GameObject floorI=Instantiate(wall,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(baseObject.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
-				}else if(field[y,x]==2){
+					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"Wall";
+				}else if(field[y,x]==2){	//BLUE CRYSTAL
 					GameObject floorI=Instantiate(floor,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(baseObject.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
+					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"Floor";
 					floorI=Instantiate(crystalBlue,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(crystals.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
-				}else if(field[y,x]==3){
+					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"BlueCrystal";
+				}else if(field[y,x]==3){	//RED CRYSTAL
 					GameObject floorI=Instantiate(floor,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(baseObject.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
+					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"Floor";
 					floorI=Instantiate(crystalRed,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(crystals.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
-				}else if(field[y,x]==4){
+					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"RedCrystal";
+				}else if(field[y,x]==4){	//BLACK CRYSTAL
 					GameObject floorI=Instantiate(floor,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(baseObject.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
+					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"Floor";
 					floorI=Instantiate(crystalBlack,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(crystals.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
+					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"BlackCrystal";
 				}
 			}
 		}
