@@ -20,7 +20,9 @@ public class initialize : MonoBehaviour {
 	
 		GameObject baseObject = transform.Find ("baseObject").gameObject;
 		GameObject crystals = transform.Find ("crystals").gameObject;
-		
+
+		float sca = 14.0f / (float)Mathf.Max (H, W);
+		this.transform.localScale = new Vector3 (sca, sca, sca);
 		for(int y=0;y<H;y++){
 			for(int x=0;x<W;x++){
 				float xc=(x-Mathf.FloorToInt(W/2.0f))*32.0f+16.0f*((W+1)%2.0f);
