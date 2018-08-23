@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class initialize : MonoBehaviour {
+public class ui_control : MonoBehaviour {
 
 	// Use this for initialization
 	
 	public GameObject floor,floor_red,floor_blue,wall,crystalBlue,crystalRed,crystalBlack;
 
 	
-	void start(){
+	void Start(){
 		Debug.Log("START");
 		set_panel(3,3,new int[,] {{1,2,1},{3,1,0},{1,0,4}});
 		Debug.Log("END");
