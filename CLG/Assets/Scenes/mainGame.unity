@@ -720,7 +720,7 @@ RectTransform:
   - {fileID: 1026757309}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1144,6 +1144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2147026344}
+  - component: {fileID: 2147026345}
   m_Layer: 5
   m_Name: mainField
   m_TagString: Untagged
@@ -1173,3 +1174,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2147026345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2147026343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4cc1ccc0ceed74c81ea9f011e8f4a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floor: {fileID: 1636207152684306, guid: f5ab2a9245492a848877552458f806ca, type: 2}
+  floor_red: {fileID: 1054111515903154, guid: 6a79af10741167f47a98f10c3a709155, type: 2}
+  floor_blue: {fileID: 1710720085039296, guid: fd3b2f4181be47d4e98b235444370f96, type: 2}
+  wall: {fileID: 1518317924275134, guid: 887de64f3b2fff54499599054d07f18e, type: 2}
+  crystalBlue: {fileID: 1915332007235924, guid: 487466653c0ab174397b2b4574a8816a,
+    type: 2}
+  crystalRed: {fileID: 1688299524060096, guid: 15e15ef81cf861840ae1a4abb275bb87, type: 2}
+  crystalBlack: {fileID: 1066944688702212, guid: fb7d0446ebc036a4cb29bbcd833b63b6,
+    type: 2}
