@@ -1,23 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class ui_control : MonoBehaviour {
 
 	// Use this for initialization
 	
-	public GameObject floor,floor_red,floor_blue,wall,crystalBlue,crystalRed,crystalBlack;
+	public GameObject 	floor,floor_red,floor_blue,wall,crystalBlue,crystalRed,crystalBlack,
+						light_B_num,light_R_num,wall_B_num,wall_R_num,mirror_B_num,mirror_R_num;
+
 
 	
 	void Start(){
 		Debug.Log("START");
-		set_panel(3,3,new int[,] {{1,2,1},{3,1,0},{1,0,4}});
+		set_panel(3,3,new int[,] {{1,2,1},{3,1,0},{1,0,4}},4,4,4);
 		Debug.Log("END");
 	}
 	
-	public void set_panel(int H,int W,int[,] field){
+	public void set_panel(int H,int W,int[,] field,int initial_light,int initial_wall,int initial_mirror){
 	
+
+
+
+		light_B_num.GetComponent<Text> ().text = initial_light.ToString ();
+		light_R_num.GetComponent<Text> ().text = initial_light.ToString ();
+		wall_B_num.GetComponent<Text> ().text = initial_wall.ToString ();
+		wall_R_num.GetComponent<Text> ().text = initial_wall.ToString ();
+		mirror_B_num.GetComponent<Text> ().text = initial_mirror.ToString ();
+		mirror_R_num.GetComponent<Text> ().text = initial_mirror.ToString ();
+
+
 		GameObject baseObject = transform.Find ("baseObject").gameObject;
 		GameObject crystals = transform.Find ("crystals").gameObject;
 
