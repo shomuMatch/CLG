@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224822957174658900}
   - component: {fileID: 222370937339300528}
   - component: {fileID: 114119879981369236}
+  - component: {fileID: 114369161377161178}
   m_Layer: 5
   m_Name: mirrorA
   m_TagString: Untagged
@@ -55,6 +56,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114369161377161178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1877723874073878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b495a2256eeb641bc52bda8527cf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  id: 0
+  uc: {fileID: 0}
 --- !u!222 &222370937339300528
 CanvasRenderer:
   m_ObjectHideFlags: 1

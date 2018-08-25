@@ -8,16 +8,22 @@ public class ui_control : MonoBehaviour {
 	// Use this for initialization
 	
 	public GameObject 	floor,floor_red,floor_blue,wall,crystalBlue,crystalRed,crystalBlack,
-						light_B_num,light_R_num,wall_B_num,wall_R_num,mirror_B_num,mirror_R_num;
+						light_B_num,light_R_num,wall_B_num,wall_R_num,mirror_B_num,mirror_R_num,
+						mouse_on_obj;
+	public int holding_id,holding_type;
+
+	public float screenX,screenY,canvasX,canvasY,ratio;
 
 
-	/*
 	void Start(){
-		Debug.Log("START");
-		set_panel(3,3,new int[,] {{1,2,1},{3,1,0},{1,0,4}},4,4,4);
-		Debug.Log("END");
-	}*/
-	
+
+		ratio = 960f / Screen.width;
+	}
+
+
+
+
+
 	public void set_panel(int H,int W,int[,] field,int initial_light,int initial_wall,int initial_mirror){
 	
 
@@ -89,7 +95,34 @@ public class ui_control : MonoBehaviour {
 			}
 		}
 	
+
+		StartCoroutine (putItems (1));
 	}
 	
-	
+
+	public IEnumerator putItems(int player){
+		GameObject obj=null;
+		while (!Input.GetMouseButtonDown(0)) {
+			yield return null;
+		}
+		if (mouse_on_obj != null) {
+			obj = Instantiate (mouse_on_obj, Vector2.zero, Quaternion.identity);
+			obj.transform.SetParent (transform.root.transform);
+			obj.transform.localPosition = new Vector2(	Camera.main.ScreenToViewportPoint(Input.mousePosition).x*960f-480f,
+														Camera.main.ScreenToViewportPoint(Input.mousePosition).y*540f-270f);
+		}
+		while (true) {
+			while (!Input.GetMouseButtonDown (0) && !Input.GetMouseButtonDown (2)) {
+				obj.transform.localPosition = new Vector2 (Camera.main.ScreenToViewportPoint (Input.mousePosition).x * 960f - 480f,
+					Camera.main.ScreenToViewportPoint (Input.mousePosition).y * 540f - 270f);
+				yield return null;
+			}
+		}
+
+		yield return new WaitForSeconds (2);
+	}
+
+
+
+
 }
