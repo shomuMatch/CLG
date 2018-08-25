@@ -39,7 +39,7 @@ public class ui_control : MonoBehaviour {
 		for(int y=0;y<H;y++){
 			for(int x=0;x<W;x++){
 				float xc=(x-Mathf.FloorToInt(W/2.0f))*32.0f+16.0f*((W+1)%2.0f);
-				float yc=-(y-Mathf.FloorToInt(H/2.0f))*32.0f+16.0f*((H+1)%2.0f);
+				float yc=-(y-Mathf.FloorToInt(H/2.0f))*32.0f-16.0f*((H+1)%2.0f);
 				if(field[y,x]==0){			//FLOOR
 					GameObject floorI=Instantiate(floor,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(baseObject.transform);
