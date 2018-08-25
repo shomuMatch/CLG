@@ -11,12 +11,12 @@ public class ui_control : MonoBehaviour {
 						light_B_num,light_R_num,wall_B_num,wall_R_num,mirror_B_num,mirror_R_num;
 
 
-	
+	/*
 	void Start(){
 		Debug.Log("START");
 		set_panel(3,3,new int[,] {{1,2,1},{3,1,0},{1,0,4}},4,4,4);
 		Debug.Log("END");
-	}
+	}*/
 	
 	public void set_panel(int H,int W,int[,] field,int initial_light,int initial_wall,int initial_mirror){
 	
