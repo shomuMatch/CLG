@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224441411824787882}
   - component: {fileID: 222813379245493542}
   - component: {fileID: 114660614987378422}
-  - component: {fileID: 114862573344752518}
   m_Layer: 5
   m_Name: lightRed
   m_TagString: Untagged
@@ -56,20 +55,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114862573344752518
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1513158428576272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96b495a2256eeb641bc52bda8527cf4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: -1
-  id: 0
-  uc: {fileID: 0}
 --- !u!222 &222813379245493542
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -9,7 +9,7 @@ public class ui_control : MonoBehaviour {
 	
 	public GameObject 	floor,floor_red,floor_blue,wall,crystalBlue,crystalRed,crystalBlack,
 						light_B_num,light_R_num,wall_B_num,wall_R_num,mirror_B_num,mirror_R_num,
-						mouse_on_obj;
+						mouse_on_obj,mouse_on_floor;
 	public int holding_id,holding_type;
 
 	public float screenX,screenY,canvasX,canvasY,ratio;
@@ -52,6 +52,7 @@ public class ui_control : MonoBehaviour {
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
 					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"Floor";
+					floorI.GetComponent<floor> ().uc = this.gameObject;
 				}else if(field[y,x]==1){	//WALL
 					GameObject floorI=Instantiate(wall,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(baseObject.transform);
@@ -64,6 +65,7 @@ public class ui_control : MonoBehaviour {
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
 					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"Floor";
+					floorI.GetComponent<floor> ().uc = this.gameObject;
 					floorI=Instantiate(crystalBlue,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(crystals.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
@@ -75,6 +77,7 @@ public class ui_control : MonoBehaviour {
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
 					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"Floor";
+					floorI.GetComponent<floor> ().uc = this.gameObject;
 					floorI=Instantiate(crystalRed,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(crystals.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
@@ -86,6 +89,7 @@ public class ui_control : MonoBehaviour {
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
 					floorI.transform.localScale=new Vector3(1.0f,1.0f,1.0f);
 					floorI.transform.name = y.ToString ("00")+x.ToString("00")+"Floor";
+					floorI.GetComponent<floor> ().uc = this.gameObject;
 					floorI=Instantiate(crystalBlack,Vector3.zero,Quaternion.identity);
 					floorI.transform.SetParent(crystals.transform);
 					floorI.transform.localPosition = new Vector3(xc,yc,0.0f);
@@ -96,32 +100,60 @@ public class ui_control : MonoBehaviour {
 		}
 	
 
-		StartCoroutine (putItems (1));
+		StartCoroutine (pickItems (1));
 	}
 	
 
-	public IEnumerator putItems(int player){
+	public IEnumerator pickItems(int player){
 		GameObject obj=null;
-		while (!Input.GetMouseButtonDown(0)) {
-			yield return null;
-		}
-		if (mouse_on_obj != null) {
-			obj = Instantiate (mouse_on_obj, Vector2.zero, Quaternion.identity);
-			obj.transform.SetParent (transform.root.transform);
-			obj.transform.localPosition = new Vector2(	Camera.main.ScreenToViewportPoint(Input.mousePosition).x*960f-480f,
-														Camera.main.ScreenToViewportPoint(Input.mousePosition).y*540f-270f);
-		}
 		while (true) {
-			while (!Input.GetMouseButtonDown (0) && !Input.GetMouseButtonDown (2)) {
+			while (!Input.GetMouseButtonDown (0)) {
+				yield return null;
+			}
+			if (mouse_on_obj != null) {
+				obj = Instantiate (mouse_on_obj, Vector2.zero, Quaternion.identity);
+				obj.transform.SetParent (transform.root.transform);
 				obj.transform.localPosition = new Vector2 (Camera.main.ScreenToViewportPoint (Input.mousePosition).x * 960f - 480f,
 					Camera.main.ScreenToViewportPoint (Input.mousePosition).y * 540f - 270f);
+				obj.GetComponent<Image> ().color = new Color (1.0f, 1.0f, 1.0f, 0.4f);
 				yield return null;
+				break;
+			} else {
+				yield return null;
+			}
+		}
+		while (true) {
+			int state = 0;
+			while (true) {
+				if (Input.GetMouseButtonDown (0)) {
+					state = 1;
+					yield return null;
+					break;
+				} else if (Input.GetMouseButtonDown (2)) {
+					state = 2;
+					yield return null;
+					break;
+				} else {
+					state = 0;
+					obj.transform.localPosition = new Vector2 (Camera.main.ScreenToViewportPoint (Input.mousePosition).x * 960f - 480f,
+						Camera.main.ScreenToViewportPoint (Input.mousePosition).y * 540f - 270f);
+					yield return null;
+				}
 			}
 		}
 
 		yield return new WaitForSeconds (2);
 	}
 
+	public void floorColor(bool clear){
+
+		if (!clear) {
+			mouse_on_floor.GetComponent<Image> ().color = new Color (0.3f, 1.0f, 0.3f);
+		} else {
+			mouse_on_floor.GetComponent<Image> ().color = new Color (1.0f, 1.0f, 1.0f);
+		}
+
+	}
 
 
 

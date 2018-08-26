@@ -2964,3 +2964,8 @@ MonoBehaviour:
   mouse_on_obj: {fileID: 0}
   holding_id: 0
   holding_type: 0
+  screenX: 0
+  screenY: 0
+  canvasX: 0
+  canvasY: 0
+  ratio: 0
