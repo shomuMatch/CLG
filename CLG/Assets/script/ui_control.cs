@@ -9,8 +9,8 @@ public class ui_control : MonoBehaviour {
 	
 	public GameObject 	floor,floor_red,floor_blue,wall,crystalBlue,crystalRed,crystalBlack,
 						light_B_num,light_R_num,wall_B_num,wall_R_num,mirror_B_num,mirror_R_num,
-						mouse_on_obj,mouse_on_floor;
-	public int holding_id,holding_type;
+						mouse_on_obj,mouse_on_floor,baseObject,crystals,lights,mirrors;
+	public int holding_id,mouse_on_type,holding_type,Hs,Ws;
 
 	public float screenX,screenY,canvasX,canvasY,ratio;
 
@@ -26,7 +26,8 @@ public class ui_control : MonoBehaviour {
 
 	public void set_panel(int H,int W,int[,] field,int initial_light,int initial_wall,int initial_mirror){
 	
-
+		Hs = H;
+		Ws = W;
 
 
 		light_B_num.GetComponent<Text> ().text = initial_light.ToString ();
@@ -37,8 +38,6 @@ public class ui_control : MonoBehaviour {
 		mirror_R_num.GetComponent<Text> ().text = initial_mirror.ToString ();
 
 
-		GameObject baseObject = transform.Find ("baseObject").gameObject;
-		GameObject crystals = transform.Find ("crystals").gameObject;
 
 		float sca = 14.0f / (float)Mathf.Max (H, W);
 		this.transform.localScale = new Vector3 (sca, sca, sca);
@@ -100,7 +99,7 @@ public class ui_control : MonoBehaviour {
 		}
 	
 
-		StartCoroutine (pickItems (1));
+		//StartCoroutine (pickItems (2));
 	}
 	
 
@@ -110,12 +109,13 @@ public class ui_control : MonoBehaviour {
 			while (!Input.GetMouseButtonDown (0)) {
 				yield return null;
 			}
-			if (mouse_on_obj != null) {
+			if (mouse_on_obj != null && ((player==1 && mouse_on_type>0) || (player==2 && mouse_on_type<0))) {
 				obj = Instantiate (mouse_on_obj, Vector2.zero, Quaternion.identity);
 				obj.transform.SetParent (transform.root.transform);
 				obj.transform.localPosition = new Vector2 (Camera.main.ScreenToViewportPoint (Input.mousePosition).x * 960f - 480f,
 					Camera.main.ScreenToViewportPoint (Input.mousePosition).y * 540f - 270f);
 				obj.GetComponent<Image> ().color = new Color (1.0f, 1.0f, 1.0f, 0.4f);
+				holding_type = mouse_on_type;
 				yield return null;
 				break;
 			} else {
@@ -127,12 +127,39 @@ public class ui_control : MonoBehaviour {
 			while (true) {
 				if (Input.GetMouseButtonDown (0)) {
 					state = 1;
+
+					string fName = mouse_on_floor.gameObject.name;
+					string yS = fName.Substring (0, 2);
+					string xS = fName.Substring (2, 2);
+
+					float xc = (float.Parse (xS) - Mathf.FloorToInt (Ws / 2.0f)) * 32.0f + 16.0f * ((Ws + 1) % 2.0f);
+					float yc = -(float.Parse (yS) - Mathf.FloorToInt (Hs / 2.0f)) * 32.0f - 16.0f * ((Hs + 1) % 2.0f);
+					print (obj.name.Substring (0, 1));
+					if (obj.name.Substring (0, 1) == "l") {
+						obj.transform.SetParent (lights.transform);
+					} else if (obj.name.Substring (0, 1) == "m") {
+						obj.transform.SetParent (mirrors.transform);
+
+					} else if (obj.name.Substring (0, 1) == "w") {
+						obj.transform.SetParent (baseObject.transform);
+					}
+					obj.transform.localPosition = new Vector3 (xc, yc, 0.0f);
+					obj.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
+					obj.GetComponent<Image> ().color = new Color (1.0f, 1.0f, 1.0f, 1.0f);
+					holding_type = 0;
 					yield return null;
 					break;
-				} else if (Input.GetMouseButtonDown (2)) {
+				} else if (Input.GetMouseButtonDown (1)) {
 					state = 2;
+					print ("IJIJI");
+					Destroy (obj);
+					holding_type = 0;
+					StartCoroutine (pickItems (player));
 					yield return null;
-					break;
+					yield break;
+				} else if (Input.GetAxis ("Mouse ScrollWheel") != 0.0f) {
+					obj.transform.Rotate (new Vector3 (0.0f, 0.0f, 90.0f));
+					yield return null;
 				} else {
 					state = 0;
 					obj.transform.localPosition = new Vector2 (Camera.main.ScreenToViewportPoint (Input.mousePosition).x * 960f - 480f,
@@ -140,14 +167,17 @@ public class ui_control : MonoBehaviour {
 					yield return null;
 				}
 			}
-		}
 
-		yield return new WaitForSeconds (2);
+			if (state == 1) {
+				break;
+			}
+		}
+		yield return null;
 	}
 
 	public void floorColor(bool clear){
 
-		if (!clear) {
+		if (!clear && holding_type!=0) {
 			mouse_on_floor.GetComponent<Image> ().color = new Color (0.3f, 1.0f, 0.3f);
 		} else {
 			mouse_on_floor.GetComponent<Image> ().color = new Color (1.0f, 1.0f, 1.0f);

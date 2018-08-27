@@ -10,11 +10,11 @@ public class items : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler {
 
 	public void OnPointerEnter(PointerEventData eventData){
 		uc.GetComponent<ui_control> ().mouse_on_obj = pref;
-		uc.GetComponent<ui_control> ().holding_type = type;
+		uc.GetComponent<ui_control> ().mouse_on_type = type;
 	}
 
 	public void OnPointerExit(PointerEventData eventData){
 		uc.GetComponent<ui_control> ().mouse_on_obj = null;
-		uc.GetComponent<ui_control> ().holding_type = 0;
+		uc.GetComponent<ui_control> ().mouse_on_type = 0;
 	}
 }

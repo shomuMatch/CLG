@@ -2962,8 +2962,16 @@ MonoBehaviour:
   mirror_B_num: {fileID: 1485349184}
   mirror_R_num: {fileID: 532280098}
   mouse_on_obj: {fileID: 0}
+  mouse_on_floor: {fileID: 0}
+  baseObject: {fileID: 1232838677}
+  crystals: {fileID: 568045521}
+  lights: {fileID: 1066146184}
+  mirrors: {fileID: 1528137633}
   holding_id: 0
+  mouse_on_type: 0
   holding_type: 0
+  Hs: 0
+  Ws: 0
   screenX: 0
   screenY: 0
   canvasX: 0
