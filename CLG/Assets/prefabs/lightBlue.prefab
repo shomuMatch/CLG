@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224983652787869350}
   - component: {fileID: 222340214137215256}
   - component: {fileID: 114904488211188098}
+  - component: {fileID: 225206808071815264}
   m_Layer: 5
   m_Name: lightBlue
   m_TagString: Untagged
@@ -80,3 +81,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225206808071815264
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1143474725344408}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

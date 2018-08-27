@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224042214830687032}
   - component: {fileID: 222364421845943458}
   - component: {fileID: 114642222500602714}
+  - component: {fileID: 114325888880469500}
   m_Layer: 5
   m_Name: floor
   m_TagString: Untagged
@@ -28,6 +29,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114325888880469500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1636207152684306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d86b30820f1ef4385339b9e4d971cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uc: {fileID: 0}
 --- !u!114 &114642222500602714
 MonoBehaviour:
   m_ObjectHideFlags: 1
